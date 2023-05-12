@@ -96,6 +96,7 @@ while True:
                         # Draw bounding box and label on image
                         cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
 
+                        # Draw the label above the box
                         label = labels[classIds[i]]
 
                         cv2.putText(image, label, (x, y - 8),
@@ -117,6 +118,7 @@ while True:
                         # Draw bounding box and label on image
                         cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
 
+                        # Draw the label above the box
                         label = labels[classIds[i]]
 
                         cv2.putText(image, label, (x, y - 8),
