@@ -26,16 +26,13 @@ state = "play"
 while True:
     if (state == "play"):
         # Read the first frame of the video
-        readVideo = video.read()
-        check = readVideo[0]
+        check, image = video.read()       
         if (check):
-            image = readVideo[1]
             image = cv2.resize(image, (0, 0), fx=0.4, fy=0.4)
 
             # Get image dimensions
             dimensions = image.shape[:2]
-            H = dimensions[0]
-            W = dimensions[1]
+            H, W = dimensions
 
             # Create blob from image and set input for YOLO network
             # Syntax: blob = cv2.dnn.blobFromImage(image, scalefactor=1.0, size)
@@ -82,10 +79,7 @@ while True:
                 if i in indexes:
                     if labels[classIds[i]] == "sports ball":
                         # Get bounding box coordinates and class color
-                        x = boxes[i][0]
-                        y = boxes[i][1]
-                        w = boxes[i][2]
-                        h = boxes[i][3]
+                        x, y, w, h = boxes[i]
 
                         if i % 2 == 0:
                             color = (0, 255, 0)
@@ -104,10 +98,7 @@ while True:
 
                     if labels[classIds[i]] == "person":
                         # Get bounding box coordinates and class color
-                        x = boxes[i][0]
-                        y = boxes[i][1]
-                        w = boxes[i][2]
-                        h = boxes[i][3]
+                        x, y, w, h = boxes[i]
 
                         if i % 2 == 0:
                             color = (0, 255, 0)
